@@ -3,9 +3,9 @@
 #include <QtWidgets\QGraphicsBlurEffect>
 #include <string>
 
+/// <summary> Widget to display the node editor for the fluid. </summary>
 class FluidNodeEditorWidget : public NodeEditorWidget
 {
-
 public:
 	// Draw functions
 	FluidNodeEditorWidget(std::string name, std::string path)
@@ -18,7 +18,4 @@ public:
 	void DrawBackground(QPaintEvent *event);
 	void DrawSideMenu(QPaintEvent *event);
 	void DrawNodes(QPaintEvent *event);
-	
-
-
 };
