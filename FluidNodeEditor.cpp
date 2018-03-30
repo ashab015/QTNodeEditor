@@ -1,9 +1,8 @@
 #include "FluidNodeEditor.h"
 
-
+/// <summary> Draw the background for the node editor. <summary>
 void FluidNodeEditorWidget::DrawBackground(QPaintEvent *event)
 {
-
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 
@@ -14,23 +13,13 @@ void FluidNodeEditorWidget::DrawBackground(QPaintEvent *event)
 	QRectF rec(0, 0, this->width(), this->height());
 	painter.drawRect(rec);
 
-	// cross
+	// Crosses
 	painter.setBrush(QBrush(QColor(0, 0, 0, 20), Qt::BrushStyle::CrossPattern));
 	painter.drawRect(rec);
-
 }
-
-void FluidNodeEditorWidget::DrawSideMenu(QPaintEvent *event)
-{
-
-
-
-
-}
-
+/// <summary> Loop through ever node we have and draw it. <summary>
 void FluidNodeEditorWidget::DrawNodes(QPaintEvent *event)
 {
-
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 
@@ -72,7 +61,7 @@ void FluidNodeEditorWidget::DrawNodes(QPaintEvent *event)
 		gradient.setColorAt(1, nodes[x]->nodecolor.darker(200));
 		painter.drawRoundedRect(rec, smooth, smooth);
 
-		// name title
+		// Draw node name and title
 		painter.setBrush(Qt::darkGray);
 		QRectF rec2(nodes[x]->position.x(), nodes[x]->position.y(), nodewidth, fontsize * 3);
 		painter.drawRoundedRect(rec2, smooth, smooth);
@@ -83,7 +72,7 @@ void FluidNodeEditorWidget::DrawNodes(QPaintEvent *event)
 		QRectF rec3((textpadding / 2) + nodes[x]->position.x(), nodes[x]->position.y(), nodewidth, fontsize * 3);
 		painter.drawText(rec3, QString(nodes[x]->name.c_str()));
 
-		// inputs
+		// Inputs
 		painter.setFont(QFont("Helvetica", fontsize * 0.9));
 		for (int i = 1; nodes[x]->inputs.size() + 1 > i; i++)
 		{
@@ -97,7 +86,7 @@ void FluidNodeEditorWidget::DrawNodes(QPaintEvent *event)
 			painter.drawEllipse(inputpos, connectionradius, connectionradius);
 		}
 
-		// outputs
+		// Draw Outputs
 		for (int i = 1; nodes[x]->outputs.size() + 1 > i; i++)
 		{
 			painter.drawText(QPoint((nodes[x]->position.x() + (nodewidth / 1.5)), ((titleheight * 1.2) + nodes[x]->position.y()) + (inputspacing * i)), QString(nodes[x]->outputs[i - 1].c_str()));
@@ -109,7 +98,7 @@ void FluidNodeEditorWidget::DrawNodes(QPaintEvent *event)
 			painter.setBrush(nodes[x]->outputcolors[i - 1]);
 			painter.drawEllipse(inputpos, connectionradius, connectionradius);
 		}
-
+        // Draw the spinner for the users
 		if (nodes[x]->spinner == true)
 		{
 			painter.setBrush(Qt::white);
@@ -137,11 +126,6 @@ void FluidNodeEditorWidget::DrawNodes(QPaintEvent *event)
 			painter.setFont(QFont("Helvetica", 5 * 1.6));
 			painter.drawText(nodes[x]->position.x() + 61, nodes[x]->position.y() + 43, ">");
 			painter.drawText(nodes[x]->position.x() + 61, nodes[x]->position.y() + 54, "<");
-
 		}
-
 	}
-
-
-
 }
