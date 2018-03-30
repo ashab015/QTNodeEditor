@@ -1,10 +1,9 @@
 #include "FluidNodeSolver.h"
 #include "Viscoelastic.h"
 
+/// <summary> Translates the users node setup to the 3dsmax scene. </summary>
 void FluidNodeSolver::LoadNodeLogic()
 {
-
-
 	using namespace std;
 	std::string path = Get3dsmaxPath2() + TCHARToString2(particlenode->GetName()) + ".cfx";
 	string line;
@@ -83,7 +82,6 @@ void FluidNodeSolver::LoadNodeLogic()
     	}
   	}
 
-
 	for (int x=0; indexs.size() > x; x++)
 	{
 		QTNode* node = new QTNode();
@@ -111,16 +109,12 @@ void FluidNodeSolver::LoadNodeLogic()
 
 	// Solve logic
 	SolveNodeLogic();
-
-
 }
 
 void FluidNodeSolver::SolveNodeLogic()
 {
-
 	for (int x=0; nodes.size() > x; x++)
 	{
-
 		// Node Repel
 		if (nodes[x]->name == "Node Repel")
 		{
@@ -187,7 +181,6 @@ void FluidNodeSolver::SolveNodeLogic()
 			}
 		}
 		
-
 		// Node Colliders
 		if (nodes[x]->name == "Collider")
 		{
@@ -210,9 +203,6 @@ void FluidNodeSolver::SolveNodeLogic()
 				}
 			}
 		}
-
-
-
 
 		// Path
 		if (nodes[x]->name == "Path")
@@ -265,8 +255,6 @@ void FluidNodeSolver::SolveNodeLogic()
 			}
 		}
 
-
-
 		// Node Morph
 		if (nodes[x]->name == "Morpher")
 		{
@@ -309,8 +297,6 @@ void FluidNodeSolver::SolveNodeLogic()
 				fluidnodes.push_back(node);
 			}
 		}
-		
-
 
 		// gravity
 		if (nodes[x]->name == "Gravity")
@@ -385,15 +371,5 @@ void FluidNodeSolver::SolveNodeLogic()
 				fluidnodes.push_back(node);
 			}
 		}
-
-
-
-
 	}
-
-
-
-
-
-
 }
